@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Log into the ACR
+      run: docker login $ACR_SERVER --username "$ACR_USERNAME" --password "$ACR_PASSWORD"
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag brezyweather:1.0.0
+    - name: push the docker image
+      run: docker push $ACR_SERVER/brezyweather:1.0.0
