@@ -25,7 +25,7 @@ jobs:
     - name: Log into the ACR
       run: docker login $ACR_SERVER --username "$ACR_USERNAME" --password "$ACR_PASSWORD"
     - name: Build the Docker image
-      run: docker build . --file Dockerfile
+      run: docker build -t $image_name .
     - name: Push the docker image
       run: |
         docker tag $image_name $ACR_SERVER/$image_name:$tag
