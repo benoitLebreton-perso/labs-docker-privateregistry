@@ -14,7 +14,11 @@ jobs:
     env:
       image_name: brezyweather
       tag: 1.0.0
-
+      ACR_SERVER: '${{ secrets.ACR_SERVER }}'
+      ACR_USERNAME: '${{ secrets.ACR_USERNAME }}'
+      ACR_PASSWORD: '${{ secrets.ACR_PASSWORD }}'
+      
+      
     steps:
     - name: Check out the repo
       uses: actions/checkout@v3
